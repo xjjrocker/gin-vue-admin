@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="primary" class="drawer-container" icon="el-icon-setting" @click="showSettingDrawer" />
+    <el-button type="primary" class="drawer-container" icon="setting" @click="showSettingDrawer" />
     <el-drawer
       v-model="drawer"
       title="系统配置"
@@ -9,30 +9,29 @@
     >
       <div class="setting_body">
         <div class="setting_card">
-          <div class="setting_title">侧边栏主题 (注：自定义请先配置背景色)</div>
           <div class="setting_content">
             <div class="theme-box">
               <div class="item" @click="changeMode('light')">
-                <i v-if="mode === 'light'" class="el-icon-check check" />
-                <img src="https://gw.alipayobjects.com/zos/antfincdn/NQ%24zoisaD2/jpRkZQMyYRryryPNtyIC.svg">
+                <div class="item-top">
+                  <el-icon v-if="mode === 'light'" class="check">
+                    <check />
+                  </el-icon>
+                  <img src="https://gw.alipayobjects.com/zos/antfincdn/NQ%24zoisaD2/jpRkZQMyYRryryPNtyIC.svg">
+                </div>
+                <p>
+                  简约白
+                </p>
               </div>
               <div class="item" @click="changeMode('dark')">
-                <i v-if="mode === 'dark'" class="el-icon-check check" />
-                <img src="https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg">
-              </div>
-            </div>
-            <div class="color-box">
-              <div>
-                <div class="setting_title">自定义背景色</div>
-                <el-color-picker :value="sideMode" @change="changeMode" />
-              </div>
-              <div>
-                <div class="setting_title">自定义基础色</div>
-                <el-color-picker :value="baseColor" @change="changeBaseColor" />
-              </div>
-              <div>
-                <div class="setting_title">活跃色</div>
-                <el-color-picker :value="activeColor" @change="activeColorChange" />
+                <div class="item-top">
+                  <el-icon v-if="mode === 'dark'" class="check">
+                    <check />
+                  </el-icon>
+                  <img src="https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg">
+                </div>
+                <p>
+                  商务黑
+                </p>
               </div>
             </div>
           </div>
@@ -53,7 +52,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('user', ['sideMode', 'baseColor', 'activeColor', 'mode'])
+    ...mapGetters('user', ['mode'])
   },
   methods: {
     handleClose() {
@@ -69,28 +68,18 @@ export default {
       }
       this.$store.dispatch('user/changeSideMode', e)
     },
-    changeBaseColor(e) {
-      if (e === null) {
-        this.$store.dispatch('user/changeBaseColor', '#fff')
-        return
-      }
-      this.$store.dispatch('user/changeBaseColor', e)
-    },
-    activeColorChange(e) {
-      if (e === null) {
-        this.$store.dispatch('user/changeActiveColor', '#1890ff')
-        return
-      }
-      this.$store.dispatch('user/changeActiveColor', e)
-    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .drawer-container {
+  transition: all 0.2s;
+  &:hover{
+    right: 0
+  }
   position: fixed;
-  right: 0;
+  right: -20px;
   bottom: 15%;
   height: 40px;
   width: 40px;
@@ -122,17 +111,24 @@ export default {
       }
     }
     .item{
-      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
+      margin-right: 20px;
+      .item-top{
+        position: relative;
+      }
       .check{
         position: absolute;
         font-size: 20px;
         color: #00afff;
+        right:10px;
+        bottom: 10px;
       }
-      img{
-        margin-right: 20px;
+      p{
+        text-align: center;
+        font-size: 12px;
       }
     }
   }

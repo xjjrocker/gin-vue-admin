@@ -8,8 +8,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type BaseMenuService struct {
-}
+type BaseMenuService struct{}
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: DeleteBaseMenu
@@ -23,10 +22,16 @@ func (baseMenuService *BaseMenuService) DeleteBaseMenu(id float64) (err error) {
 		var menu system.SysBaseMenu
 		db := global.GVA_DB.Preload("SysAuthoritys").Where("id = ?", id).First(&menu).Delete(&menu)
 		err = global.GVA_DB.Delete(&system.SysBaseMenuParameter{}, "sys_base_menu_id = ?", id).Error
+		if err != nil {
+			return err
+		}
 		if len(menu.SysAuthoritys) > 0 {
 			err = global.GVA_DB.Model(&menu).Association("SysAuthoritys").Delete(&menu.SysAuthoritys)
 		} else {
 			err = db.Error
+			if err != nil {
+				return
+			}
 		}
 	} else {
 		return errors.New("此菜单存在子菜单不可删除")

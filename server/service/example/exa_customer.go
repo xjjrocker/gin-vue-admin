@@ -8,8 +8,7 @@ import (
 	systemService "github.com/flipped-aurora/gin-vue-admin/server/service/system"
 )
 
-type CustomerService struct {
-}
+type CustomerService struct{}
 
 //@author: [piexlmax](https://github.com/piexlmax)
 //@function: CreateExaCustomer
@@ -68,6 +67,9 @@ func (exa *CustomerService) GetCustomerInfoList(sysUserAuthorityID string, info 
 	var a system.SysAuthority
 	a.AuthorityId = sysUserAuthorityID
 	err, auth := systemService.AuthorityServiceApp.GetAuthorityInfo(a)
+	if err != nil {
+		return
+	}
 	var dataId []string
 	for _, v := range auth.DataAuthorityId {
 		dataId = append(dataId, v.AuthorityId)

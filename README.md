@@ -19,6 +19,8 @@
 [插件仓库以及开发规范](https://github.com/flipped-aurora/gva-plugins):https://github.com/flipped-aurora/gva-plugins
 
 [审批流分支](https://github.com/flipped-aurora/gin-vue-admin/tree/gva_workflow): https://github.com/flipped-aurora/gin-vue-admin/tree/gva_workflow
+						       
+[setup语法糖版本地址](https://github.com/flipped-aurora/gin-vue-admin/tree/gva-vue3-setup): https://github.com/flipped-aurora/gin-vue-admin/tree/gva-vue3-setup
 
 # 项目文档
 [在线文档](https://www.gin-vue-admin.com) : https://www.gin-vue-admin.com
@@ -29,6 +31,8 @@
 
 [开发教学](https://www.gin-vue-admin.com/docs/help) (贡献者:  <a href="https://github.com/LLemonGreen">LLemonGreen</a> And <a href="https://github.com/fkk0509">Fann</a>)
 
+[交流社区](https://support.qq.com/products/371961)
+
 # 重要提示
 
 1.本项目从起步到开发到部署均有文档和详细视频教程
@@ -37,11 +41,17 @@
 
 3.您完全可以通过我们的教程和文档完成一切操作，因此我们不再提供免费的技术服务，如需服务请进行[付费支持](https://www.gin-vue-admin.com/docs/payment)
 
+4.如果您将此项目用于商业用途，请遵守Apache2.0协议并保留作者技术支持声明。您需保留如下版权声明信息，其余信息功能不做任何限制。如需剔除请联系微信：shouzi_1994
+
+<img src="https://qmplusimg.henrongyi.top/%E6%8E%88%E6%9D%83.png" width="1000">
+
+5.如果您需要服务器的话 2C4G8M 80GB 腾讯云 一年74 三年222 在这里购买：https://curl.qcloud.com/sArxMfaw
+
 ## 1. 基本介绍
 
 ### 1.1 项目介绍
 
-> Gin-vue-admin是一个基于 [vue](https://vuejs.org) 和 [gin](https://gin-gonic.com) 开发的全栈前后端分离的后台管理系统，集成jwt鉴权，动态路由，动态菜单，casbin鉴权，表单生成器，代码生成器等功能，提供多种示例文件，让您把更多时间专注在业务开发上。
+> Gin-vue-admin是一个基于 [vue](https://vuejs.org) 和 [gin](https://gin-gonic.com) 开发的全栈前后端分离的开发基础平台，集成jwt鉴权，动态路由，动态菜单，casbin鉴权，表单生成器，代码生成器等功能，提供多种示例文件，让您把更多时间专注在业务开发上。
 
 [在线预览](http://demo.gin-vue-admin.com): http://demo.gin-vue-admin.com
 
@@ -52,7 +62,7 @@
 ### 1.2 贡献指南
 Hi! 首先感谢你使用 gin-vue-admin。
 
-Gin-vue-admin 是一套为后台管理平台准备的一整套前后端分离架构式的开源框架，旨在快速搭建后台管理系统。
+Gin-vue-admin 是一套为快速研发准备的一整套前后端分离架构式的开源框架，旨在快速搭建中小型项目。
 
 Gin-vue-admin 的成长离不开大家的支持，如果你愿意为 gin-vue-admin 贡献代码或提供建议，请阅读以下内容。
 

@@ -6,6 +6,7 @@ import (
 
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
 	"github.com/flipped-aurora/gin-vue-admin/server/initialize"
+	"github.com/flipped-aurora/gin-vue-admin/server/service/system"
 	"go.uber.org/zap"
 )
 
@@ -18,6 +19,12 @@ func RunWindowsServer() {
 		// 初始化redis服务
 		initialize.Redis()
 	}
+
+	// 从db加载jwt数据
+	if global.GVA_DB != nil {
+		system.LoadAll()
+	}
+
 	Router := initialize.Routers()
 
 	Router.Static("/form-generator", "./resource/page")
@@ -31,8 +38,9 @@ func RunWindowsServer() {
 
 	fmt.Printf(`
 	欢迎使用 github.com/flipped-aurora/gin-vue-admin/server
-	当前版本:V2.4.5 beta
+	当前版本:V2.4.6
     加群方式:微信号：shouzi_1994 QQ群：622360840
+	GVA讨论社区:https://support.qq.com/products/371961
 	默认自动化文档地址:http://127.0.0.1%s/swagger/index.html
 	默认前端文件运行地址:http://127.0.0.1:8080
 	如果项目让您获得了收益，希望您能请团队喝杯可乐:https://www.github.com/flipped-aurora/gin-vue-admin/server.com/docs/coffee

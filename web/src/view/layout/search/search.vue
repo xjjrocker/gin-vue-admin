@@ -20,13 +20,32 @@
       </div>
     </transition>
     <div
-      :style="{display:'inline-block',float:'right',width:'31px',textAlign:'left',fontSize:'16px',paddingTop:'2px'}"
+      v-if="btnShow"
       class="user-box"
     >
-      <i :style="{cursor:'pointer',paddingLeft:'1px'}" class="el-icon-refresh reload" :class="[reload ? 'reloading' : '']" @click="handleReload" />
+      <el-icon class="reload" :class="[reload ? 'reloading' : '']" @click="handleReload">
+        <refresh />
+      </el-icon>
     </div>
-    <div :style="{display:'inline-block',float:'right'}" class="user-box">
-      <i :style="{cursor:'pointer'}" class="el-icon-search search-icon" @click="showSearch()" />
+    <div
+      v-if="btnShow"
+      class="user-box"
+    >
+      <el-icon class="search-icon" @click="showSearch()">
+        <search />
+      </el-icon>
+    </div>
+    <div
+      v-if="btnShow"
+      class="user-box"
+    >
+      <Screenfull class="search-icon" :style="{cursor:'pointer'}" />
+    </div>
+    <div
+      v-if="btnShow"
+      class="user-box"
+    >
+      <el-icon class="search-icon" @click="toService"><service /></el-icon>
     </div>
   </div>
 </template>
@@ -34,13 +53,18 @@
 <script>
 import { mapGetters } from 'vuex'
 import { emitter } from '@/utils/bus.js'
+import Screenfull from '@/view/layout/screenfull/index.vue'
 
 export default {
   name: 'SearchComponent',
+  components: {
+    Screenfull
+  },
   data() {
     return {
       value: '',
       show: false,
+      btnShow: true,
       reload: false
     }
   },
@@ -55,8 +79,12 @@ export default {
     },
     hiddenSearch() {
       this.show = false
+      setTimeout(() => {
+        this.btnShow = true
+      }, 500)
     },
     showSearch() {
+      this.btnShow = false
       this.show = true
       this.$nextTick(() => {
         this.$refs['search-input'].focus()
@@ -68,16 +96,16 @@ export default {
       setTimeout(() => {
         this.reload = false
       }, 500)
+    },
+    toService() {
+      window.open('https://support.qq.com/product/371961')
     }
   }
 }
 </script>
 <style scoped lang="scss">
 .reload{
-  font-size: 17px;
-  &:hover{
-    transform: scale(1.02)
-  }
+  font-size: 18px;
 }
 
 .reloading{
